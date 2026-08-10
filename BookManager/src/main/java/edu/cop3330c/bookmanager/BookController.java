@@ -1,6 +1,6 @@
 // BookController.java
-// D. Singletary
-// 11/20/24
+// R. Tran
+// 8/10/26
 // Book controller component in MVC example
 
 package edu.cop3330c.bookmanager;
@@ -32,7 +32,7 @@ public class BookController {
         // TODO: create an ObjectOutputStream named oos that nests
         //       a FileOutputStream constructed from fileName
         //       The streams must be created in a try-with-resources
-        try (...) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
             oos.writeObject(books);
             view.showMessage("Books saved to file: " + fileName);
         } catch (IOException e) {
@@ -44,7 +44,7 @@ public class BookController {
         // TODO: create an ObjectInputStream named ois that nests
         //       a FileInputStream constructed from fileName
         //       The streams must be created in a try-with-resources
-        try (...) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
             books = (List<Book>) ois.readObject();
             view.showMessage("Books loaded from file: " + fileName);
         } catch (IOException | ClassNotFoundException e) {
